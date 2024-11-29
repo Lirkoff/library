@@ -14,9 +14,9 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BookService {
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    private CheckoutRepository checkoutRepository;
+    private final CheckoutRepository checkoutRepository;
 
     public BookService(BookRepository bookRepository, CheckoutRepository checkoutRepository) {
         this.bookRepository = bookRepository;

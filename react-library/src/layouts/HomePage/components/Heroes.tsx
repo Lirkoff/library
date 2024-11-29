@@ -1,9 +1,8 @@
 import {Link, NavLink} from "react-router-dom";
-import {useOktaAuth} from "@okta/okta-react";
 
 
 export const Heroes = () => {
-    const { authState } = useOktaAuth();
+
 
     return (
         <div>
@@ -21,13 +20,9 @@ export const Heroes = () => {
                                 No matter what book you are currently reading,
                                 we will be happy to provide you with a list of books for you to read!
                             </p>
-                            {authState?.isAuthenticated ?
-                                <Link type='button' className='btn main-color btn-lg text-white'
-                                      to='/search'>Explore top books</Link>
-                                :
-                                <Link type='button' className='btn main-color btn-lg text-white'
-                                    to='/login'>Sign up</Link>
-                            }
+                            <Link type='button' className='btn main-color btn-lg text-white'
+                                  to='/register'>Sign up</Link>
+
                         </div>
                     </div>
                 </div>
@@ -63,13 +58,8 @@ export const Heroes = () => {
                                 No matter what book you are currently reading,
                                 we will be happy to provide you with a list of books for you to read!
                             </p>
-                            {authState?.isAuthenticated ?
                                 <Link type='button' className='btn main-color btn-lg text-white'
-                                      to='/search'>Explore top books</Link>
-                                :
-                                <Link type='button' className='btn main-color btn-lg text-white'
-                                      to='/login'>Sign up</Link>
-                            }
+                                      to='/register'>Sign up</Link>
                         </div>
                     </div>
                     <div className='m-2'>
@@ -81,7 +71,7 @@ export const Heroes = () => {
                                 We hope you will find something you like!
                                 Explore genres from fiction to non-fiction.
                                 Delve into the latest bestsellers and timeless classics.
-                                Happy reading! 
+                                Happy reading!
                             </p>
                         </div>
                     </div>
