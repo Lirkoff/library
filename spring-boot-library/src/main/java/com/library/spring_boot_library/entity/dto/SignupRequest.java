@@ -23,6 +23,10 @@ public class SignupRequest {
     @Size(min = 6, max = 40)
     private String password;
 
+    @NotBlank
+    @Size(min = 6, max = 40)
+    private String repeatPassword;
+
 
     public @NotBlank @Size(max = 50) @Email String getEmail() {
         return email;
@@ -57,6 +61,15 @@ public class SignupRequest {
 
     public SignupRequest setPassword(@NotBlank @Size(min = 6, max = 40) String password) {
         this.password = password;
+        return this;
+    }
+
+    public @NotBlank @Size(min = 6, max = 40) String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public SignupRequest setRepeatPassword(@NotBlank @Size(min = 6, max = 40) String repeatPassword) {
+        this.repeatPassword = repeatPassword;
         return this;
     }
 }

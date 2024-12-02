@@ -2,11 +2,13 @@ package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.entity.Book;
 import com.library.spring_boot_library.service.BookService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/books")
+@PreAuthorize("hasRole('MODERATOR')")
 public class BookController {
     private final BookService bookService;
 

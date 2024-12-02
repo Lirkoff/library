@@ -60,6 +60,9 @@ public class SecurityConfig {
                 .build();
     }
 
+
+
+
     @Bean
     public Filter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();

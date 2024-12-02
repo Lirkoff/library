@@ -1,8 +1,13 @@
 import React, {useEffect} from "react";
 import {Link, NavLink} from "react-router-dom";
+import {useAuth} from "../../auth/context/AuthContext";
 
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
+    const {user, logout} = useAuth();
+
+    const isAdmin = user?.roles?.includes("ROLE_ADMIN");
+    const isModerator = user?.roles?.includes("ROLE_MODERATOR");
 
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
@@ -22,9 +27,37 @@ export const Navbar = () => {
                             <NavLink className='nav-link' to='/search'>Search books</NavLink>
                         </li>
                     </ul>
-                    <ul className='navbar-nav ms-auto'>
-                        <NavLink className='btn btn-outline-light' to={'/register'}>Sign Up</NavLink>
-                    </ul>
+                    {user ? (
+                        <>
+                            <li>
+                                <span className="text-bg-danger">Welcome, {user.username}</span>
+                            </li>
+                            {isAdmin && (
+                                <li>
+                                    <a href="/admin">Admin Panel</a>
+                                </li>
+                            )}
+                            {isModerator && (
+                                <li>
+                                    <a href="/moderator">Moderator Panel</a>
+                                </li>
+                            )}
+                            <li>
+                                <button onClick={logout}>Logout</button>
+                            </li>
+                        </>
+                    ) : (
+                        <ul className='navbar-nav ms-auto'>
+                            <NavLink className='btn btn-outline-light' to={'/register'}>Sign Up</NavLink>
+                        </ul>
+                    )}
+
+
+                    {/*{*/}
+                    {/*    <ul className='navbar-nav ms-auto'>*/}
+                    {/*        <NavLink className='btn btn-outline-light' to={'/register'}>Sign Up</NavLink>*/}
+                    {/*    </ul>*/}
+                    {/*}*/}
                 </div>
             </div>
         </nav>

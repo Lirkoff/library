@@ -1,9 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
+import {registerUser} from "../../../api/Api";
+import {useHistory} from "react-router-dom";
 
 export const RegisterForm = () => {
+    const history = useHistory();
+    const [formData, setFormData] = useState({ username: "", email: "", password: "", repeatPassword: "" });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            await registerUser(formData);
+            alert("Registration successful! You can now login.");
+            history.push("/login");
+        } catch (error) {
+            console.error("Registration failed", error);
+        }
+    };
+
     return (
         <div className="tab-pane text-white" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="text-center mb-3">
                     <p className={'mt-3'}>Sign up with:</p>
                     <button type="button"
@@ -31,32 +51,27 @@ export const RegisterForm = () => {
 
 
                 <div className="form-outline mb-4">
-                    <input type="text" id="registerName" className="form-control"/>
-                    <label className="form-label text-white" htmlFor="registerName">Name</label>
+                    <input type="text" id="regUsername" name="username" onChange={handleChange} className="form-control"/>
+                    <label className="form-label text-white" htmlFor="username">Username</label>
+                </div>
+
+
+
+                <div className="form-outline mb-4">
+                    <input type="email" id="email" name="email" onChange={handleChange} className="form-control"/>
+                    <label className="form-label text-white" htmlFor="email">Email</label>
                 </div>
 
 
                 <div className="form-outline mb-4">
-                    <input type="text" id="registerUsername" className="form-control"/>
-                    <label className="form-label text-white" htmlFor="registerUsername">Username</label>
+                    <input type="password" id="regPassword" name="password" onChange={handleChange} className="form-control"/>
+                    <label className="form-label text-white" htmlFor="password">Password</label>
                 </div>
 
 
                 <div className="form-outline mb-4">
-                    <input type="email" id="registerEmail" className="form-control"/>
-                    <label className="form-label text-white" htmlFor="registerEmail">Email</label>
-                </div>
-
-
-                <div className="form-outline mb-4">
-                    <input type="password" id="registerPassword" className="form-control"/>
-                    <label className="form-label text-white" htmlFor="registerPassword">Password</label>
-                </div>
-
-
-                <div className="form-outline mb-4">
-                    <input type="password" id="registerRepeatPassword" className="form-control"/>
-                    <label className="form-label text-white" htmlFor="registerRepeatPassword">Repeat password</label>
+                    <input type="password" id="repeatPassword" name="repeatPassword" onChange={handleChange} className="form-control"/>
+                    <label className="form-label text-white" htmlFor="repeatPassword">Repeat password</label>
                 </div>
 
 

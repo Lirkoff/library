@@ -1,10 +1,34 @@
-import React from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {useAuth} from "../../context/AuthContext";
+import {loginUser} from "../../../api/Api";
+import {useHistory} from "react-router-dom";
 
-export const LoginForm = () => {
+
+export const LoginForm: React.FC = () => {
+    const {login} = useAuth();
+    const history = useHistory();
+    const [formData, setFormData] = useState({username: "", password: ""});
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await loginUser(formData);
+            login(response.data.accessToken);
+            history.push("/dashboard")// Assuming JWT is returned as "token"
+        } catch (error) {
+            console.error("Login failed", error);
+        }
+    };
+
+
     return (
         <div className="tab-content text-white">
             <div className="tab-pane show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="text-center mb-3">
                         <p className={'mt-3'}>Sign in with:</p>
                         <button type="button"
@@ -32,14 +56,22 @@ export const LoginForm = () => {
 
 
                     <div className="form-outline mb-4">
-                        <input type="email" id="loginName" className="form-control" />
-                        <label className="form-label" htmlFor="loginName">Email or username</label>
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               onChange={handleChange}
+                               className="form-control"/>
+                        <label className="form-label" htmlFor="username">Email or username</label>
                     </div>
 
 
                     <div className="form-outline mb-4">
-                        <input type="password" id="loginPassword" className="form-control"/>
-                        <label className="form-label" htmlFor="loginPassword">Password</label>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               onChange={handleChange}
+                               className="form-control"/>
+                        <label className="form-label" htmlFor="password">Password</label>
                     </div>
 
 
