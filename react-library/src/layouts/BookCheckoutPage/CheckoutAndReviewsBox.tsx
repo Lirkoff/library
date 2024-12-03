@@ -2,14 +2,32 @@ import React from "react";
 import BookModel from "../../models/BookModel";
 import {Link} from "react-router-dom";
 
-export const CheckoutAndReviewsBox: React.FC<{ book: BookModel | undefined, mobile: boolean,
-    currentLoansCount: number}> = (props) => {
+export const CheckoutAndReviewsBox: React.FC<{
+    book: BookModel | undefined, mobile: boolean,
+    currentLoansCount: number, isAuth: any, isCheckedOut: boolean,
+    checkoutBook: any
+}> = (props) => {
+
+    function buttonRender() {
+        if (props.isAuth) {
+            if (!props.isCheckedOut && props.currentLoansCount < 5) {
+                return (<button onClick={() => props.checkoutBook()} className='btn btn-success btn-lg'>Check out</button>)
+            } else if (props.isCheckedOut) {
+                return (<p><b>Book checked out. Enjoy!</b></p>)
+            } else if (!props.isCheckedOut) {
+                return (<p className='text-danger'>Too many books checked out.</p>)
+            }
+        }
+        return (<Link to={'/login'} className='btn btn-success btn-lg'>Sign in</Link>)
+    }
+
+
     return (
         <div className={props.mobile ? 'card d-flex mt-5' : 'card col-3 container d-flex mb-5'}>
             <div className='card-body container'>
                 <div className='mt-3'>
                     <p>
-                        <b>{props.currentLoansCount} </b>
+                        <b>{props.currentLoansCount} / 5 </b>
                         books checked out
                     </p>
                     <hr/>
@@ -33,7 +51,7 @@ export const CheckoutAndReviewsBox: React.FC<{ book: BookModel | undefined, mobi
                         </p>
                     </div>
                 </div>
-                <Link to='/login' className='btn btn-success btn-lg'>Sign in</Link>
+                {buttonRender()}
                 <hr/>
                 <p className='mt-3'>
                     This number can change until placing order has been completed.

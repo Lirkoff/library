@@ -9,6 +9,8 @@ export const Navbar: React.FC = () => {
     const isAdmin = user?.roles?.includes("ROLE_ADMIN");
     const isModerator = user?.roles?.includes("ROLE_MODERATOR");
 
+
+
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
             <div className='container-fluid'>
@@ -29,35 +31,29 @@ export const Navbar: React.FC = () => {
                     </ul>
                     {user ? (
                         <>
-                            <li>
-                                <span className="text-bg-danger">Welcome, {user.username}</span>
-                            </li>
-                            {isAdmin && (
-                                <li>
-                                    <a href="/admin">Admin Panel</a>
+                            <ul className='navbar-nav ms-auto'>
+                                <span className='nav-link text-white'>Welcome, {user.username}</span>
+
+                                {isAdmin && (
+                                    <li className='nav-item'>
+                                        <a className='nav-link' href="/admin">Admin</a>
+                                    </li>
+                                )}
+                                {isModerator && (
+                                    <li className='nav-item ms-auto'>
+                                        <a className='nav-link' href="/moderator">Moderator</a>
+                                    </li>
+                                )}
+                                <li className='navbar-nav ms-auto'>
+                                    <button className='btn btn-outline-light' onClick={logout}>Logout</button>
                                 </li>
-                            )}
-                            {isModerator && (
-                                <li>
-                                    <a href="/moderator">Moderator Panel</a>
-                                </li>
-                            )}
-                            <li>
-                                <button onClick={logout}>Logout</button>
-                            </li>
+                            </ul>
                         </>
                     ) : (
                         <ul className='navbar-nav ms-auto'>
                             <NavLink className='btn btn-outline-light' to={'/register'}>Sign Up</NavLink>
                         </ul>
                     )}
-
-
-                    {/*{*/}
-                    {/*    <ul className='navbar-nav ms-auto'>*/}
-                    {/*        <NavLink className='btn btn-outline-light' to={'/register'}>Sign Up</NavLink>*/}
-                    {/*    </ul>*/}
-                    {/*}*/}
                 </div>
             </div>
         </nav>

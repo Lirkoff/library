@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import {jwtDecode} from "jwt-decode";
+import {useHistory} from "react-router-dom";
 
 interface User {
     username: string;
@@ -19,6 +20,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
     const [user, setUser] = useState<User | null>(null);
+    const history = useHistory();
 
     const login = (token: string) => {
         setToken(token);
@@ -33,6 +35,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const logout = () => {
         setToken(null);
         setUser(null);
+        history.push("/");
         localStorage.removeItem("token");
     };
 

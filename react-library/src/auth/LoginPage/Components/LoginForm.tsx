@@ -18,7 +18,7 @@ export const LoginForm: React.FC = () => {
         try {
             const response = await loginUser(formData);
             login(response.data.accessToken);
-            history.push("/dashboard")// Assuming JWT is returned as "token"
+            history.push("/dashboard")
         } catch (error) {
             console.error("Login failed", error);
         }

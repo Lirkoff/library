@@ -1,8 +1,10 @@
 import {Link, NavLink} from "react-router-dom";
+import React from "react";
+import {useAuth} from "../../../auth/context/AuthContext";
 
 
 export const Heroes = () => {
-
+    const {user} = useAuth();
 
     return (
         <div>
@@ -20,8 +22,14 @@ export const Heroes = () => {
                                 No matter what book you are currently reading,
                                 we will be happy to provide you with a list of books for you to read!
                             </p>
-                            <Link type='button' className='btn main-color btn-lg text-white'
-                                  to='/register'>Sign up</Link>
+                            {user ? (
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                      to='/search'>Explore top books</Link>
+
+                            ) : (
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                      to='/login'>Sign in</Link>
+                            )}
 
                         </div>
                     </div>
@@ -58,8 +66,15 @@ export const Heroes = () => {
                                 No matter what book you are currently reading,
                                 we will be happy to provide you with a list of books for you to read!
                             </p>
+                            {user ? (
                                 <Link type='button' className='btn main-color btn-lg text-white'
-                                      to='/register'>Sign up</Link>
+                                      to='/search'>Explore top books</Link>
+
+                            ) : (
+                                <Link type='button' className='btn main-color btn-lg text-white'
+                                      to='/login'>Sign in</Link>
+                            )}
+
                         </div>
                     </div>
                     <div className='m-2'>
