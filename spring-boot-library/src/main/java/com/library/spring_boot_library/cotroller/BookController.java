@@ -36,26 +36,36 @@ public class BookController {
 
 
     @GetMapping("/secure/currentloans/count")
-    public int currentLoansCount() {
-        String userEmail = "testuser@email.com";
+    public int currentLoansCount(Principal principal) {
+        String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
+
 
         return bookService.currentLoansCount(userEmail);
     }
 
     @GetMapping("/secure/ischeckedout/byuser/")
-    public Boolean checkoutBookByUser(@RequestParam Long bookId) throws Exception {
-        String userEmail = "testuser@email.com";
+    public Boolean checkoutBookByUser(@RequestParam Long bookId, Principal principal) throws Exception {
+        String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
+
 
         return bookService.checkoutBookByUser(userEmail, bookId);
     }
 
     @PutMapping("/secure/checkout/")
-    public Book checkoutBook(@RequestParam Long bookId) throws Exception {
-        String userEmail = "testuser@email.com";
+    public Book checkoutBook(@RequestParam Long bookId, Principal principal) throws Exception {
+        String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
+
 
         return bookService.checkoutBook(userEmail, bookId);
     }
 
+
+    @PutMapping("/secure/return/")
+    public void returnBook(@RequestParam Long bookId, Principal principal) throws Exception {
+        String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
+
+        bookService.returnBook(userEmail, bookId);
+    }
 
 
 }
