@@ -6,6 +6,7 @@ import {CheckoutAndReviewsBox} from "./CheckoutAndReviewsBox";
 import ReviewModel from "../../models/ReviewModel";
 import {LatestReviews} from "./LatestReviews";
 import {useAuth} from "../../auth/context/AuthContext";
+import ReviewRequestModel from "../../models/ReviewRequestModel";
 
 export const BookCheckoutPage = () => {
 
@@ -20,6 +21,8 @@ export const BookCheckoutPage = () => {
     const [totalStars, setTotalStars] = useState(0);
     const [isLoadingReview, setIsLoadingReview] = useState(true);
 
+    const [isReviewLeft, setIsReviewLeft] = useState(false);
+    const [isLoadingUserReview, setIsLoadingUserReview] = useState(true);
 
 
     //Loans Count State
@@ -110,7 +113,36 @@ export const BookCheckoutPage = () => {
             setIsLoadingReview(false);
             setHttpError(error.message);
         });
-    }, [user, token]);
+    }, [isReviewLeft]);
+
+    useEffect(() => {
+        const fetchUserReviewBook = async () => {
+            if (user) {
+                const url = `http://localhost:8080/api/reviews/secure/user/book/?bookId=${bookId}`;
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                };
+                const userReviewBook = await fetch(url, requestOptions);
+
+                if (!userReviewBook.ok) {
+                    throw new Error('Something went wrong!');
+                }
+
+                const userReviewResponseJson = await userReviewBook.json();
+                setIsReviewLeft(userReviewResponseJson);
+            }
+            setIsLoadingUserReview(false);
+        }
+
+        fetchUserReviewBook().catch((error: any) => {
+            setIsLoadingUserReview(false);
+            setHttpError(error.message);
+        });
+    }, [user, token])
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
@@ -170,7 +202,7 @@ export const BookCheckoutPage = () => {
         });
     }, [user, isCheckedOut, token])
 
-    if (isLoading || isLoadingReview || isLoadingCurrentLoansCount || isLoadingBookCheckedOut) {
+    if (isLoading || isLoadingReview || isLoadingCurrentLoansCount || isLoadingBookCheckedOut || isLoadingUserReview) {
         return (
             <SpinnerLoading/>
         )
@@ -203,6 +235,32 @@ export const BookCheckoutPage = () => {
         setIsCheckedOut(true);
     }
 
+    async function submitReview(starInput: number, reviewDescription: string) {
+        let bookId: number = 0;
+
+        if (book?.id) {
+            bookId = book.id;
+        }
+
+        const reviewRequestModel = new ReviewRequestModel(starInput, bookId, reviewDescription);
+        const url = `http://localhost:8080/api/reviews/secure`;
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reviewRequestModel)
+        };
+        const returnResponse = await fetch(url, requestOptions);
+
+        if (!returnResponse.ok) {
+            throw new Error('Something went wrong!');
+        }
+
+        setIsReviewLeft(true);
+    }
+
     return (
         <div>
             <div className='container d-none d-lg-block'>
@@ -225,7 +283,8 @@ export const BookCheckoutPage = () => {
                     </div>
                     <CheckoutAndReviewsBox book={book} mobile={false} currentLoansCount={currentLoansCount}
                                            isAuth={user} isCheckedOut={isCheckedOut}
-                                           checkoutBook={checkoutBook}/>
+                                           checkoutBook={checkoutBook}
+                                           isReviewLeft={isReviewLeft} submitReview={submitReview}/>
                 </div>
                 <hr/>
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={false}/>
@@ -247,7 +306,8 @@ export const BookCheckoutPage = () => {
                     </div>
                 </div>
                 <CheckoutAndReviewsBox book={book} mobile={true} currentLoansCount={currentLoansCount}
-                                       isAuth={user} isCheckedOut={isCheckedOut} checkoutBook={checkoutBook}/>
+                                       isAuth={user} isCheckedOut={isCheckedOut} checkoutBook={checkoutBook}
+                                       isReviewLeft={isReviewLeft} submitReview={submitReview}/>
                 <hr/>
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true}/>
             </div>
