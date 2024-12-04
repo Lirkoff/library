@@ -28,6 +28,12 @@ export const Navbar: React.FC = () => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' to='/search'>Search books</NavLink>
                         </li>
+                        {user &&
+                            <li className='nav-item'>
+                                <NavLink to={'/shelf'} className='nav-link'>Shelf</NavLink>
+                            </li>
+
+                        }
                     </ul>
                     {user ? (
                         <>

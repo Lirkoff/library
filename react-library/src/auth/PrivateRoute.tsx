@@ -8,14 +8,14 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, path, ...rest }) => {
-    const { token } = useAuth();
+    const { token, user } = useAuth();
     const history = useHistory();
 
     useEffect(() => {
         if (!token) {
             history.push("/login"); // Redirect to login if not authenticated
         }
-    }, [token, history]);
+    }, [token, user, history]);
 
     return (
         <Route
