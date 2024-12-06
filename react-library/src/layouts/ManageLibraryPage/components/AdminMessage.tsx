@@ -1,9 +1,19 @@
 import React, {useState} from "react";
 import MessageModel from "../../../models/MessageModel";
 
-export const AdminMessage: React.FC<{ message: MessageModel }> = (props, key) => {
+export const AdminMessage: React.FC<{ message: MessageModel,
+    submitResponseToQuestion: any }> = (props, key) => {
     const [displayWarning, setDisplayWarning] = useState(false);
     const [response, setResponse] = useState('');
+
+    function submitBtn() {
+        if (props.message.id !== null && response !== '') {
+            props.submitResponseToQuestion(props.message.id, response);
+            setDisplayWarning(false);
+        } else {
+            setDisplayWarning(true);
+        }
+    }
 
 
     return (
@@ -15,7 +25,7 @@ export const AdminMessage: React.FC<{ message: MessageModel }> = (props, key) =>
                 <hr/>
                 <div>
                     <h5>Response: </h5>
-                    <form action='PUT'>
+                    <form action="PUT">
                         {displayWarning &&
                             <div className='alert alert-danger' role='alert'>
                                 All fields must be filled out!
@@ -27,7 +37,7 @@ export const AdminMessage: React.FC<{ message: MessageModel }> = (props, key) =>
                                       onChange={e => setResponse(e.target.value)} value={response}></textarea>
                         </div>
                         <div>
-                            <button type='button' className='btn btn-primary mt-3'>Submit response</button>
+                            <button type='button' className='btn btn-primary mt-3' onClick={submitBtn}>Submit response</button>
                         </div>
                     </form>
                 </div>
