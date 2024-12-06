@@ -17,14 +17,14 @@ export const LibraryServices = () => {
                         contact our administrator and we'll help you out!
                     </p>
                     <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
-                        {user ? (
+                        {user ?
                             <Link type='button' className='btn main-color btn-lg px-4 me-md-2 fw-bold text-white'
-                                  to='#'>Library Services</Link>
+                                  to='/messages'>Library Services</Link>
 
-                        ) : (
+                            :
                             <Link type='button' className='btn main-color btn-lg text-white'
                                   to='/login'>Sign in</Link>
-                        )}
+                        }
 
                     </div>
                 </div>

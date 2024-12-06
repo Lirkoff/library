@@ -52,6 +52,7 @@ public class SecurityConfig {
 //                                        .requestMatchers("/api/books/**").permitAll()
                                         .requestMatchers("/api/books/secure/**",
                                                 "/api/reviews/secure/**").permitAll()
+                                        .requestMatchers("/api/messages/secure/**").permitAll()
                                         .requestMatchers("/api/reviews").permitAll()
                                         .requestMatchers("/api/auth/login").permitAll()
                                         .requestMatchers("/api/auth/register").permitAll()

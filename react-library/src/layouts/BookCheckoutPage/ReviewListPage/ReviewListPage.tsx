@@ -99,6 +99,7 @@ export const ReviewListPage = () => {
                 ))}
             </div>
 
+
             {totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>}
         </div>
     )

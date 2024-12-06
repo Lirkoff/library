@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 interface User {
     username: string;
     roles: string[];
+    email: string;
 }
 
 
@@ -28,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
         const payload = JSON.parse(atob(token.split(".")[1]));
-        setUser({ username: payload.sub, roles: payload.roles });
+        setUser({ username: payload.sub, roles: payload.roles, email: payload.email });
 
     };
 

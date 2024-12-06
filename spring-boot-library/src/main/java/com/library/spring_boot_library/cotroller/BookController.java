@@ -67,5 +67,12 @@ public class BookController {
         bookService.returnBook(userEmail, bookId);
     }
 
+    @PutMapping("/secure/renew/loan/")
+    public void renewLoan(@RequestParam Long bookId, Principal principal) throws Exception {
+        String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
+
+        bookService.renewLoan(userEmail, bookId);
+    }
+
 
 }

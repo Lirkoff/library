@@ -13,6 +13,7 @@ import {Dashboard} from "./layouts/Dashboard/Dashboard";
 import {AdminPanelPage} from "./layouts/AdminPanelPage/AdminPanelPage";
 import {ReviewListPage} from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
 import {ShelfPage} from "./layouts/ShelfPage/ShelfPage";
+import {MessagesPage} from "./layouts/MessagesPage/MessagesPage";
 
 
 export const App: React.FC = () => {
@@ -51,6 +52,9 @@ export const App: React.FC = () => {
                             </Route>
                             <PrivateRoute path='/shelf'>
                                 <ShelfPage/>
+                            </PrivateRoute>
+                            <PrivateRoute path='/messages'>
+                                <MessagesPage/>
                             </PrivateRoute>
                         </Switch>
                     </div>
