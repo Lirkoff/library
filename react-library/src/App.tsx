@@ -14,6 +14,7 @@ import {AdminPanelPage} from "./layouts/AdminPanelPage/AdminPanelPage";
 import {ReviewListPage} from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
 import {ShelfPage} from "./layouts/ShelfPage/ShelfPage";
 import {MessagesPage} from "./layouts/MessagesPage/MessagesPage";
+import {ManageLibraryPage} from "./layouts/ManageLibraryPage/ManageLibraryPage";
 
 
 export const App: React.FC = () => {
@@ -44,9 +45,6 @@ export const App: React.FC = () => {
                             <Route path='/register'>
                                 <LoginRegisterPage/>
                             </Route>
-                            <Route path='/admin'>
-                                <AdminPanelPage/>
-                            </Route>
                             <Route path="/dashboard">
                                 <Dashboard/>
                             </Route>
@@ -55,6 +53,9 @@ export const App: React.FC = () => {
                             </PrivateRoute>
                             <PrivateRoute path='/messages'>
                                 <MessagesPage/>
+                            </PrivateRoute>
+                            <PrivateRoute path='/admin'>
+                                <ManageLibraryPage/>
                             </PrivateRoute>
                         </Switch>
                     </div>
