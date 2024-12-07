@@ -20,7 +20,7 @@ export const Messages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
             if (user){
-                const url = `http://localhost:8080/api/messages/search/findByUserEmail/?userEmail=${user.email}&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `${process.env.REACT_APP_API}/messages/search/findByUserEmail/?userEmail=${user.email}&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {

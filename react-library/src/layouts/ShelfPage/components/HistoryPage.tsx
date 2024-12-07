@@ -22,7 +22,7 @@ export const HistoryPage = () => {
         const fetchUserHistory = async () => {
 
             if (user) {
-                const url = `http://localhost:8080/api/histories/search/findBooksByUserEmail/?userEmail=${user?.email}&page=${currentPage - 1}&size=5`;
+                const url = `${process.env.REACT_APP_API}/histories/search/findBooksByUserEmail/?userEmail=${user?.email}&page=${currentPage - 1}&size=5`;
 
                 const requestOptions = {
                     method: 'GET',

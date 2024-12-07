@@ -12,7 +12,7 @@ export const Carousel = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const baseURL = 'http://localhost:8080/api/books';
+            const baseURL = `${process.env.REACT_APP_API}/books`;
 
             const url: string = `${baseURL}?page=0&size=9`;
 
