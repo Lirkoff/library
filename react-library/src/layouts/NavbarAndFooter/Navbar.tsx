@@ -33,6 +33,11 @@ export const Navbar: React.FC = () => {
                                 <NavLink to={'/shelf'} className='nav-link'>Shelf</NavLink>
                             </li>
                         }
+                        {user &&
+                            <li className='nav-item'>
+                                <NavLink to={'/fees'} className='nav-link'>Pay fees</NavLink>
+                            </li>
+                        }
                         {user && isModerator &&
                             <li className='nav-item'>
                                 <NavLink to={'/admin'} className='nav-link'>Admin</NavLink>

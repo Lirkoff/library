@@ -15,6 +15,7 @@ import {ReviewListPage} from "./layouts/BookCheckoutPage/ReviewListPage/ReviewLi
 import {ShelfPage} from "./layouts/ShelfPage/ShelfPage";
 import {MessagesPage} from "./layouts/MessagesPage/MessagesPage";
 import {ManageLibraryPage} from "./layouts/ManageLibraryPage/ManageLibraryPage";
+import {PaymentPage} from "./layouts/PaymentPage/PaymentPage";
 
 
 export const App: React.FC = () => {
@@ -56,6 +57,9 @@ export const App: React.FC = () => {
                             </PrivateRoute>
                             <PrivateRoute path='/admin'>
                                 <ManageLibraryPage/>
+                            </PrivateRoute>
+                            <PrivateRoute path='/fees'>
+                                <PaymentPage/>
                             </PrivateRoute>
                         </Switch>
                     </div>
