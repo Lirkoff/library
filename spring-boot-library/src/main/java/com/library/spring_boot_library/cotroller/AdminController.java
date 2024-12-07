@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://localhost:3000")
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
@@ -18,8 +18,30 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    @PutMapping("/secure/increase/book/quantity")
+    public void increaseBookQuantity(@RequestParam Long bookId, Authentication authentication) throws Exception{
+        String roles = authentication.getAuthorities().toString().split(",")[1].replace("]", "");
+
+        if (!roles.contains("ROLE_ADMIN") || !roles.contains("ROLE_MODERATOR")) {
+            throw new Exception("Administration page only!");
+        }
+
+        adminService.increaseBookQuantity(bookId);
+    }
+
+    @PutMapping("/secure/decrease/book/quantity")
+    public void decreaseBookQuantity(@RequestParam Long bookId, Authentication authentication) throws Exception{
+        String roles = authentication.getAuthorities().toString().split(",")[1].replace("]", "");
+
+        if (!roles.contains("ROLE_ADMIN") || !roles.contains("ROLE_MODERATOR")) {
+            throw new Exception("Administration page only!");
+        }
+
+        adminService.decreaseBookQuantity(bookId);
+    }
+
     @PostMapping("/secure/add/book")
-    public void postBook(Principal principal, Authentication authentication, @RequestBody AddBookRequest addBookRequest) throws Exception {
+    public void postBook(Authentication authentication, @RequestBody AddBookRequest addBookRequest) throws Exception {
         String roles = authentication.getAuthorities().toString().split(",")[1].replace("]", "");
 
         if (!roles.contains("ROLE_ADMIN") || !roles.contains("ROLE_MODERATOR")) {
@@ -27,6 +49,17 @@ public class AdminController {
         }
 
         adminService.postBook(addBookRequest);
+    }
+
+    @DeleteMapping("/secure/delete/book")
+    public void deleteBook(@RequestParam Long bookId, Authentication authentication) throws Exception {
+        String roles = authentication.getAuthorities().toString().split(",")[1].replace("]", "");
+
+        if (!roles.contains("ROLE_ADMIN") || !roles.contains("ROLE_MODERATOR")) {
+            throw new Exception("Administration page only!");
+        }
+
+        adminService.deleteBook(bookId);
     }
 
 }

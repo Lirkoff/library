@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://localhost:3000")
 @Controller
 @RequestMapping("/api/messages")
 public class MessagesController {

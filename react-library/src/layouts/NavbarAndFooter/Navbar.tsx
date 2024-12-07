@@ -32,24 +32,18 @@ export const Navbar: React.FC = () => {
                             <li className='nav-item'>
                                 <NavLink to={'/shelf'} className='nav-link'>Shelf</NavLink>
                             </li>
-
+                        }
+                        {user && isModerator &&
+                            <li className='nav-item'>
+                                <NavLink to={'/admin'} className='nav-link'>Admin</NavLink>
+                            </li>
                         }
                     </ul>
                     {user ? (
                         <>
                             <ul className='navbar-nav ms-auto'>
                                 <span className='nav-link text-white'>Welcome, {user.username}</span>
-
-                                {isAdmin && (
-                                    <li className='nav-item'>
-                                        <a className='nav-link' href="/admin">Admin</a>
-                                    </li>
-                                )}
-                                {isModerator && (
-                                    <li className='nav-item ms-auto'>
-                                        <a className='nav-link' href="/moderator">Moderator</a>
-                                    </li>
-                                )}
+                                
                                 <li className='navbar-nav ms-auto'>
                                     <button className='btn btn-outline-light' onClick={logout}>Logout</button>
                                 </li>
