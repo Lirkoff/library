@@ -1,12 +1,11 @@
 import React from "react";
 import ShelfCurrentLoansModel from "../../../models/ShelfCurrentLoansModel";
 
-const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: boolean, returnBook: any, renewLoan: any }> = (props) => {
+export const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: boolean, returnBook: any, renewLoan: any }> = (props) => {
     return (
-        <div className='modal fade'
-             id={props.mobile ? `mobilemodal${props.shelfCurrentLoan.book.id}` : `modal${props.shelfCurrentLoan.book.id}`}
-             data-bs-backdrop='static' data-bs-keyboard='false' aria-labelledby='staticBackdropLabel' aria-hidden='true'
-             key={props.shelfCurrentLoan.book.id}>
+        <div className='modal fade' id={props.mobile ? `mobilemodal${props.shelfCurrentLoan.book.id}` :
+            `modal${props.shelfCurrentLoan.book.id}`} data-bs-backdrop='static' data-bs-keyboard='false'
+             aria-labelledby='staticBackdropLabel' aria-hidden='true' key={props.shelfCurrentLoan.book.id}>
             <div className='modal-dialog'>
                 <div className='modal-content'>
                     <div className='modal-header'>
@@ -30,8 +29,8 @@ const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: b
                                         }
                                     </div>
                                     <div className='col-10'>
-                                        <h6>{props.shelfCurrentLoan.book?.author}</h6>
-                                        <h4>{props.shelfCurrentLoan.book?.title}</h4>
+                                        <h6>{props.shelfCurrentLoan.book.author}</h6>
+                                        <h4>{props.shelfCurrentLoan.book.title}</h4>
                                     </div>
                                 </div>
                                 <hr/>
@@ -39,7 +38,6 @@ const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: b
                                     <p className='text-secondary'>
                                         Due in {props.shelfCurrentLoan.daysLeft} days.
                                     </p>
-
                                 }
                                 {props.shelfCurrentLoan.daysLeft === 0 &&
                                     <p className='text-success'>
@@ -52,8 +50,8 @@ const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: b
                                     </p>
                                 }
                                 <div className='list-group mt-3'>
-                                    <button onClick={() => props.returnBook(props.shelfCurrentLoan.book.id)} data-bs-toggle='modal'
-                                            className='list-group-item list-group-item-action'
+                                    <button onClick={() => props.returnBook(props.shelfCurrentLoan.book.id)}
+                                            data-bs-dismiss='modal' className='list-group-item list-group-item-action'
                                             aria-current='true'>
                                         Return Book
                                     </button>
@@ -62,11 +60,11 @@ const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: b
                                             (event) => event.preventDefault()
                                             :
                                             () => props.renewLoan(props.shelfCurrentLoan.book.id)
-                                    } data-bs-dismiss='modal'
+                                    }
+                                            data-bs-dismiss='modal'
                                             className={
                                                 props.shelfCurrentLoan.daysLeft < 0 ?
-                                                    'list-group-item list-group-item-action inactiveLink'
-                                                    :
+                                                    'list-group-item list-group-item-action inactiveLink' :
                                                     'list-group-item list-group-item-action'
                                             }>
                                         {props.shelfCurrentLoan.daysLeft < 0 ?
@@ -88,4 +86,3 @@ const LoansModal: React.FC<{ shelfCurrentLoan: ShelfCurrentLoansModel, mobile: b
     )
 }
 
-export default LoansModal;

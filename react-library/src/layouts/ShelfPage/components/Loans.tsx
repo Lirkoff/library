@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import ShelfCurrentLoansModel from "../../../models/ShelfCurrentLoansModel";
 import {SpinnerLoading} from "../../Utils/SpinnerLoading";
 import {Link} from "react-router-dom";
-import LoansModal from "./LoansModal";
+import {LoansModal} from "./LoansModal";
+
 
 export const Loans = () => {
     const {user, token} = useAuth();
@@ -59,7 +60,7 @@ export const Loans = () => {
     }
 
     async function returnBook(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/return/?bookId=${bookId}`;
+        const url = `${process.env.REACT_APP_API}/books/secure/return/?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -77,7 +78,7 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/renew/loan/?bookId=${bookId}`;
+        const url = `${process.env.REACT_APP_API}/books/secure/renew/loan/?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {

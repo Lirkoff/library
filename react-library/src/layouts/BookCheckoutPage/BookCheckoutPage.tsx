@@ -40,7 +40,7 @@ export const BookCheckoutPage = () => {
 
     useEffect(() => {
         const fetchBook = async () => {
-            const baseURL = `http://localhost:8080/api/books/${bookId}`;
+            const baseURL = `${process.env.REACT_APP_API}/books/${bookId}`;
 
             const response = await fetch(baseURL);
 
