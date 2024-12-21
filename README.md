@@ -1,4 +1,5 @@
 Library App
+
 A full-stack application that allows users to register, rent, and return books. Built with React + TypeScript on the frontend and Java + Spring Boot on the backend, with MySQL as the database. Authentication and authorization are handled via Spring Security, and payments are processed through Stripe.
 ________________________________________
 Table of Contents
