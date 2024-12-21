@@ -59,9 +59,3 @@ A **full-stack** application for users to register, rent, and return books. The 
 | **Payments** | Stripe API        |
 | **Auth**     | Spring Security   |
 
-## Contact
-
-- **Author**: [Your Name](https://github.com/<YOUR-USERNAME>)  
-- **Email**: youremail@example.com  
-
-If you have any questions, suggestions, or issues, feel free to [open an issue](https://github.com/<YOUR-USERNAME>/library-app/issues) or reach out directly. Enjoy!
