@@ -46,9 +46,9 @@ export const App: React.FC = () => {
                             <Route path='/register'>
                                 <LoginRegisterPage/>
                             </Route>
-                            <Route path="/dashboard">
-                                <Dashboard/>
-                            </Route>
+                            <PrivateRoute path='/dashboard'>
+                                <PaymentPage/>
+                            </PrivateRoute>
                             <PrivateRoute path='/shelf'>
                                 <ShelfPage/>
                             </PrivateRoute>

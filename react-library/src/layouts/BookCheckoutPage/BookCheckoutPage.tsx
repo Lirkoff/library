@@ -10,6 +10,8 @@ import ReviewRequestModel from "../../models/ReviewRequestModel";
 
 export const BookCheckoutPage = () => {
 
+    const baseUrl = 'https://localhost:8443';
+
     const {user, token} = useAuth();
 
     const [book, setBook] = useState<BookModel>();
@@ -74,7 +76,7 @@ export const BookCheckoutPage = () => {
 
     useEffect(() => {
         const fetchBookReviews = async () => {
-            const reviewUrl: string = `${process.env.REACT_APP_API}/reviews/search/findByBookId?bookId=${bookId}`;
+            const reviewUrl: string = `${process.env.REACT_APP_API}/reviews/search/${bookId}`;
 
             const responseReviews = await fetch(reviewUrl);
 
@@ -85,7 +87,7 @@ export const BookCheckoutPage = () => {
 
             const responseJsonReviews = await responseReviews.json();
 
-            const responseData = responseJsonReviews._embedded.reviews;
+            const responseData = responseJsonReviews.content;
 
             const loadedReviews: ReviewModel[] = [];
 
@@ -275,7 +277,7 @@ export const BookCheckoutPage = () => {
                 <div className='row mt-5'>
                     <div className='col-sm-2 col-md-2'>
                         {book?.img ?
-                            <img src={book?.img} width='226' height='349' alt='Book'/>
+                            <img src={baseUrl + book?.img} width='226' height='349' alt='Book'/>
                             :
                             <img src={require('../../Images/BooksImages/book.webp')} width='226' height='349'
                                  alt='Book'/>
@@ -304,7 +306,7 @@ export const BookCheckoutPage = () => {
                 }
                 <div className='d-flex justify-content-center align-items-center'>
                     {book?.img ?
-                        <img src={book?.img} width='226' height='349' alt='Book'/>
+                        <img src={baseUrl + book?.img} width='226' height='349' alt='Book'/>
                         :
                         <img src={require('../../Images/BooksImages/book.webp')} width='226' height='349' alt='Book'/>
                     }

@@ -3,6 +3,7 @@ import BookModel from "../../../models/BookModel";
 import {Link} from "react-router-dom";
 
 export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
+    const baseURL = 'https://localhost:8443';
     return (
         <div className='card mt-3 shadow p-3 mb-5 bg-body rounded'>
             <div className='row g-0'>
@@ -10,7 +11,7 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
 
                     <div className='d-none d-lg-block'>
                         {props.book.img ?
-                            <img src={props.book.img}
+                            <img src={baseURL + props.book.img}
                                  width='123'
                                  height='196'
                                  alt='Book'/>
@@ -23,7 +24,7 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                     </div>
                     <div className='d-lg-none d-flex justify-content-center align-items-center'>
                         {props.book.img ?
-                            <img src={props.book.img}
+                            <img src={baseURL + props.book.img}
                                  width='123'
                                  height='196'
                                  alt='Book'/>

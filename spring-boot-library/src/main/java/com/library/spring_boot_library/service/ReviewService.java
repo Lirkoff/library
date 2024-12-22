@@ -3,11 +3,14 @@ package com.library.spring_boot_library.service;
 import com.library.spring_boot_library.dao.ReviewRepository;
 import com.library.spring_boot_library.entity.Review;
 import com.library.spring_boot_library.requestModels.ReviewRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,6 +21,11 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
+
+    public Page<Review> reviewsByBookId(Long bookId, Pageable pageable) {
+        return reviewRepository.findByBookId(bookId, pageable);
+    }
+
 
     public void postReview(String userEmail, ReviewRequest reviewRequest) throws Exception {
         Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, reviewRequest.getBookId());

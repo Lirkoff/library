@@ -9,6 +9,8 @@ import com.library.spring_boot_library.entity.Checkout;
 import com.library.spring_boot_library.entity.History;
 import com.library.spring_boot_library.entity.Payment;
 import com.library.spring_boot_library.responseModels.ShelfCurrentLoansResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +34,14 @@ public class BookService {
         this.checkoutRepository = checkoutRepository;
         this.historyRepository = historyRepository;
         this.paymentRepository = paymentRepository;
+    }
+
+    public Page<Book> allBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
+    }
+
+    public Book getBookById(Long bookId) {
+        return bookRepository.findById(bookId).orElse(null);
     }
 
     public Book checkoutBook(String userEmail, Long bookId) throws Exception {

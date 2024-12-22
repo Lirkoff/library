@@ -29,7 +29,7 @@ public class Book {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "img", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "img")
     private String img;
 
     public Long getId() {

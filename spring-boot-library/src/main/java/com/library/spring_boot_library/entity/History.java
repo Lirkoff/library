@@ -45,6 +45,7 @@ public class History {
         this.title = title;
         this.author = author;
         this.description = description;
+        this.img = img;
     }
 
     public Long getId() {

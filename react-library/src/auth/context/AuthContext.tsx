@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, {createContext, useState, useContext, useEffect} from "react";
 import {jwtDecode} from "jwt-decode";
 import {useHistory} from "react-router-dom";
 
@@ -39,6 +39,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         history.push("/");
         localStorage.removeItem("token");
     };
+
+
+    useEffect(() => {
+        if (token) {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            setUser({ username: payload.sub, roles: payload.roles, email: payload.email });
+        }
+    }, []);
 
     return (
         <AuthContext.Provider value={{ token, login, logout, user }}>

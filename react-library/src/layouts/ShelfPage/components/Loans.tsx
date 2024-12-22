@@ -7,6 +7,7 @@ import {LoansModal} from "./LoansModal";
 
 
 export const Loans = () => {
+    const baseUrl = 'https://localhost:8443';
     const {user, token} = useAuth();
     const [httpError, setHttpError] = useState(null);
 
@@ -109,7 +110,7 @@ export const Loans = () => {
                                 <div className='row mt-3 mb-3'>
                                     <div className='col-4 col-md-4 container'>
                                         {shelfCurrentLoan.book?.img ?
-                                            <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book'/>
+                                            <img src={baseUrl + shelfCurrentLoan.book?.img} width='226' height='349' alt='Book'/>
                                             :
                                             <img src={require('./../../../Images/BooksImages/book.webp')} width='226'
                                                  height='349' alt='Book'/>
@@ -186,7 +187,7 @@ export const Loans = () => {
                             <div key={shelfCurrentLoan.book.id}>
                                 <div className='d-flex justify-content-center align-items-center'>
                                     {shelfCurrentLoan.book?.img ?
-                                        <img src={shelfCurrentLoan.book?.img} width='226' height='349' alt='Book'/>
+                                        <img src={baseUrl + shelfCurrentLoan.book?.img} width='226' height='349' alt='Book'/>
                                         :
                                         <img src={require('./../../../Images/BooksImages/book.webp')} width='226'
                                              height='349' alt='Book'/>
