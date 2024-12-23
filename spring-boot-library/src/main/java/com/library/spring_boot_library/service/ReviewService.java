@@ -52,4 +52,8 @@ public class ReviewService {
         Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, bookId);
         return validateReview != null;
     }
+
+    public Page<Review> getClientReviews(Long bookId, Pageable pageable) {
+        return reviewRepository.findByBookId(bookId, pageable);
+    }
 }

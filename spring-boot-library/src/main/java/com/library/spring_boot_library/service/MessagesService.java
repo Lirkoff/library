@@ -3,6 +3,8 @@ package com.library.spring_boot_library.service;
 import com.library.spring_boot_library.dao.MessageRepository;
 import com.library.spring_boot_library.entity.Message;
 import com.library.spring_boot_library.requestModels.AdminQuestionRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,14 @@ public class MessagesService {
 
     public MessagesService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
+    }
+
+    public Page<Message> getNotClosedUserMessages(Pageable pageable) {
+        return messageRepository.findByClosed(false, pageable);
+    }
+
+    public Page<Message> getMessagesSendByUser(String userEmail, Pageable pageable) {
+        return messageRepository.findByUserEmail(userEmail,pageable);
     }
 
     public void postMessage(Message messageRequest, String userEmail) {

@@ -4,13 +4,11 @@ import {Footer} from "./layouts/NavbarAndFooter/Footer";
 import {HomePage} from "./layouts/HomePage/HomePage";
 import {SearchBooksPage} from "./layouts/SearchBooksPage/SearchBooksPage";
 import {BookCheckoutPage} from "./layouts/BookCheckoutPage/BookCheckoutPage";
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import React from "react";
 import {LoginRegisterPage} from "./auth/LoginPage/LoginRegisterPage";
 import {AuthProvider} from "./auth/context/AuthContext";
 import PrivateRoute from "./auth/PrivateRoute";
-import {Dashboard} from "./layouts/Dashboard/Dashboard";
-import {AdminPanelPage} from "./layouts/AdminPanelPage/AdminPanelPage";
 import {ReviewListPage} from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
 import {ShelfPage} from "./layouts/ShelfPage/ShelfPage";
 import {MessagesPage} from "./layouts/MessagesPage/MessagesPage";
@@ -46,9 +44,6 @@ export const App: React.FC = () => {
                             <Route path='/register'>
                                 <LoginRegisterPage/>
                             </Route>
-                            <PrivateRoute path='/dashboard'>
-                                <PaymentPage/>
-                            </PrivateRoute>
                             <PrivateRoute path='/shelf'>
                                 <ShelfPage/>
                             </PrivateRoute>

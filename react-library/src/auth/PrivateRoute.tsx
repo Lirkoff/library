@@ -12,9 +12,14 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, path, ...rest }) 
     const history = useHistory();
 
     useEffect(() => {
-        if (!token) {
+        if (!token && !user) {
             history.push("/login"); // Redirect to login if not authenticated
         }
+
+        if (path === '/admin' && !user?.roles.includes('ROLE_ADMIN' || 'ROLE_MODERATOR')) {
+            history.push("/");
+        }
+
     }, [token, user, history]);
 
     return (

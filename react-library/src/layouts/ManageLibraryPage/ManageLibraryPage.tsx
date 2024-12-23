@@ -6,7 +6,6 @@ import {AddNewBook} from "./components/AddNewBook";
 import {ChangeQuantityOfBooks} from "./components/ChangeQuantityOfBooks";
 
 export const ManageLibraryPage = () => {
-    const {user, token} = useAuth();
 
     const [changeQuantityOfBooksClick, setChangeQuantityOfBooksClick] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);
@@ -25,12 +24,6 @@ export const ManageLibraryPage = () => {
         setChangeQuantityOfBooksClick(false);
         setMessagesClick(true);
     }
-
-    // if (!user?.roles.includes('ROLE_ADMIN' || 'ROLE_MODERATOR')){
-    //     return (
-    //         <Redirect to={'/home'}/>
-    //     )
-    // }
 
     return (
         <div className='container'>

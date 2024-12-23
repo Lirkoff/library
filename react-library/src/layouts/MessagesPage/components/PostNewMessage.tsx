@@ -40,18 +40,18 @@ export const PostNewMessage = () => {
     return (
         <div className='card mt-3'>
             <div className='card-header'>
-                Ask question to Library admin
+                Ask question to Library Admin
             </div>
             <div className='card-body'>
                 <form method='POST'>
                     {displayWarning &&
                         <div className='alert alert-danger' role='alert'>
-                                All fields must be filled out!
+                            All fields must be filled out
                         </div>
                     }
                     {displaySuccess &&
                         <div className='alert alert-success' role='alert'>
-                            Question added successfully!
+                            Question added successfully
                         </div>
                     }
                     <div className='mb-3'>
@@ -59,25 +59,24 @@ export const PostNewMessage = () => {
                             Title
                         </label>
                         <input type='text' className='form-control' id='exampleFormControlInput1'
-                               placeholder='title'
-                               onChange={e => setTitle(e.target.value)} value={title}/>
+                               placeholder='Title' onChange={e => setTitle(e.target.value)} value={title}/>
                     </div>
 
                     <div className='mb-3'>
-                            <label className='form-label'>
-                                Question
-                            </label>
+                        <label className='form-label'>
+                            Question
+                        </label>
                         <textarea className='form-control' id='exampleFormControlTextarea1'
-                        rows={3} onChange={e => setQuestion(e.target.value)} value={question}>
+                                  rows={3} onChange={e => setQuestion(e.target.value)} value={question}>
                         </textarea>
                     </div>
                     <div>
-                        <button type='submit' className='btn btn-primary mt-3'
-                            onClick={submitNewQuestion}
-                        >Submit Question</button>
+                        <button type='button' className='btn btn-primary mt-3' onClick={submitNewQuestion}>
+                            Submit Question
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
-    )
+    );
 }

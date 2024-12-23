@@ -1,4 +1,4 @@
-import {useAuth} from "../../../auth/context/AuthContext";
+ import {useAuth} from "../../../auth/context/AuthContext";
 import {useEffect, useState} from "react";
 import MessageModel from "../../../models/MessageModel";
 import {SpinnerLoading} from "../../Utils/SpinnerLoading";
@@ -28,7 +28,7 @@ export const AdminMessages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
             if (user) {
-                const url = `${process.env.REACT_APP_API}/messages/search/findByClosed/?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `${process.env.REACT_APP_API}/messages/search?page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -44,8 +44,8 @@ export const AdminMessages = () => {
 
                 const messagesResponseJson = await messagesResponse.json();
 
-                setMessages(messagesResponseJson._embedded.messages);
-                setTotalPages(messagesResponseJson.page.totalPages);
+                setMessages(messagesResponseJson.content);
+                setTotalPages(messagesResponseJson.totalPages);
             }
             setIsLoadingMessages(false);
         }

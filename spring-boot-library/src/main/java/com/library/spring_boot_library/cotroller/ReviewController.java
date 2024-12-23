@@ -2,42 +2,36 @@ package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.UserRepository;
 import com.library.spring_boot_library.entity.Review;
-import com.library.spring_boot_library.entity.UserEntity;
 import com.library.spring_boot_library.requestModels.ReviewRequest;
 import com.library.spring_boot_library.service.ReviewService;
 import com.library.spring_boot_library.utils.JwtUtils;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins = "https://localhost:3000")
+
+
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
     private final ReviewService reviewService;
-    private final JwtUtils jwtUtils;
     private final UserRepository userRepository;
 
-    public ReviewController(ReviewService reviewService, JwtUtils jwtUtils, UserRepository userRepository) {
+    public ReviewController(ReviewService reviewService, UserRepository userRepository) {
         this.reviewService = reviewService;
-        this.jwtUtils = jwtUtils;
         this.userRepository = userRepository;
     }
 
+
     @GetMapping("/search/{bookId}")
-    public ResponseEntity<Page<Review>> getReviewsByBookId(@PathVariable("bookId") Long bookId, Pageable pageable) {
-        System.out.println(bookId);
-        return ResponseEntity.of(Optional.ofNullable(reviewService.reviewsByBookId(bookId, pageable)));
+    public Page<Review> getReviewsByBookId(@PathVariable("bookId") Long bookId, Pageable pageable) {
+
+        return reviewService.reviewsByBookId(bookId, pageable);
     }
 
     @GetMapping("/secure/user/book/")
-    public Boolean reviewBookByUser(@RequestParam Long bookId, Principal principal) throws Exception{
+    public Boolean reviewBookByUser(@RequestParam Long bookId, Principal principal) throws Exception {
         String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
 
         if (userEmail == null) {
@@ -48,7 +42,7 @@ public class ReviewController {
     }
 
     @PostMapping("/secure")
-    public void postReview(@RequestBody ReviewRequest reviewRequest, Principal principal) throws Exception{
+    public void postReview(@RequestBody ReviewRequest reviewRequest, Principal principal) throws Exception {
         String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
 
 

@@ -75,14 +75,6 @@ export const RegisterForm = () => {
                 </div>
 
 
-                <div className="form-check d-flex justify-content-center mb-4">
-                    <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck"
-                           aria-describedby="registerCheckHelpText"/>
-                    <label className="form-check-label" htmlFor="registerCheck">
-                        I have read and agree to the terms
-                    </label>
-                </div>
-
                 <button type="submit"
                         className="btn text-white btn-block border-2 border-white mb-3">Sign up
                 </button>

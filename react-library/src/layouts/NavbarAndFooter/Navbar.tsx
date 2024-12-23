@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
                                 <NavLink to={'/fees'} className='nav-link'>Pay fees</NavLink>
                             </li>
                         }
-                        {user && isModerator &&
+                        {user && isModerator && isAdmin &&
                             <li className='nav-item'>
                                 <NavLink to={'/admin'} className='nav-link'>Admin</NavLink>
                             </li>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import {useAuth} from "../../context/AuthContext";
 import {loginUser} from "../../../api/Api";
 import {useHistory} from "react-router-dom";
@@ -18,7 +18,7 @@ export const LoginForm: React.FC = () => {
         try {
             const response = await loginUser(formData);
             login(response.data.accessToken);
-            history.push("/dashboard")
+            history.push("/")
         } catch (error) {
             console.error("Login failed", error);
         }
@@ -74,28 +74,15 @@ export const LoginForm: React.FC = () => {
                         <label className="form-label" htmlFor="password">Password</label>
                     </div>
 
-
-                    <div className="row mb-4">
-                        <div className="col-md-6 d-flex justify-content-center">
-
-                            <div className="form-check mb-3 mb-md-0">
-                                <input className="form-check-input" type="checkbox" value="" id="loginCheck"/>
-                                <label className="form-check-label" htmlFor="loginCheck"> Remember me </label>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6 d-flex justify-content-center">
-                            <a className={'text-white'} href="#!">Forgot password?</a>
-                        </div>
-                    </div>
-
-
                     <button type="submit"
                             className="btn btn-block text-white border-2 border-white mb-4">Sign in
                     </button>
 
 
                     <div className="text-center">
+
+                        <a className={'text-white'} href="#!">Forgot password?</a>
+
                         <p>Not a member? <a className={'text-white'} href="#!">Register</a></p>
                     </div>
                 </form>

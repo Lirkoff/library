@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.naming.ldap.PagedResultsControl;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -52,6 +54,7 @@ public class AdminService {
     }
 
     public void postBook(AddBookRequest addBookRequest) {
+
         Book book = new Book();
         book.setTitle(addBookRequest.getTitle());
         book.setAuthor(addBookRequest.getAuthor());

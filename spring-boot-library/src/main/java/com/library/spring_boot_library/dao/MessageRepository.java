@@ -12,7 +12,7 @@ import java.security.Principal;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    Page<Message> findByUserEmail(Principal principal, Pageable pageable);
+    Page<Message> findByUserEmail(String userEmail, Pageable pageable);
 
-    Page<Message> findByClosed(@RequestParam("closed") boolean closed, Pageable pageable);
+    Page<Message> findByClosed(boolean closed, Pageable pageable);
 }

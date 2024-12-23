@@ -39,10 +39,6 @@ export const HistoryPage = () => {
 
                 const historyResponseJson = await historyResponse.json();
 
-                console.log(historyResponseJson);
-                console.log(historyResponseJson.content.histories);
-                console.log(historyResponseJson.totalPages);
-
                 setHistories(historyResponseJson.content);
                 setTotalPages(historyResponseJson.totalPages);
             }

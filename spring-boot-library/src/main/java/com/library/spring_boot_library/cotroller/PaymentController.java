@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@CrossOrigin(origins = "https://localhost:3000")
 @Controller
 @RequestMapping("/api/payment/secure")
 public class PaymentController {

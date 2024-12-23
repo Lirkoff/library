@@ -20,7 +20,7 @@ export const Messages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
             if (user){
-                const url = `${process.env.REACT_APP_API}/messages/search/findByUserEmail/?userEmail=${user.email}&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `${process.env.REACT_APP_API}/messages/search/?userEmail=${user.email}&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -34,8 +34,8 @@ export const Messages = () => {
                 }
 
                 const messagesResponseJson = await messagesResponse.json();
-                setMessages(messagesResponseJson._embedded.messages);
-                setTotalPages(messagesResponseJson.page.totalPages);
+                setMessages(messagesResponseJson.content);
+                setTotalPages(messagesResponseJson.totalPages);
             }
             setIsLoadingMessages(false);
         }

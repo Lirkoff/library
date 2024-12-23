@@ -27,7 +27,7 @@ public class History {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "img")
+    @Column(name = "img", columnDefinition = "MEDIUMBLOB")
     private String img;
 
     public History(){}

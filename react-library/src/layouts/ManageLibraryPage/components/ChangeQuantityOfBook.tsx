@@ -3,6 +3,7 @@ import BookModel from "../../../models/BookModel";
 import {useAuth} from "../../../auth/context/AuthContext";
 
 export const ChangeQuantityOfBook: React.FC<{book: BookModel, deleteBook: any }> = (props, key) => {
+    const baseUrl = 'https://localhost:8443';
     const {user, token} = useAuth();
     const [quantity, setQuantity] = useState<number>(0);
     const [remaining, setRemaining] = useState<number>(0);
@@ -77,14 +78,14 @@ export const ChangeQuantityOfBook: React.FC<{book: BookModel, deleteBook: any }>
                 <div className='col-md-2'>
                     <div className='d-none d-lg-block'>
                         {props.book.img ?
-                            <img src={props.book.img} width='123' height='196' alt='Book'/>
+                            <img src={baseUrl + props.book.img} width='123' height='196' alt='Book'/>
                             :
                             <img src={require('../../../Images/BooksImages/book.webp')} width='123' height='196' alt='Book'/>
                         }
                     </div>
                     <div className='d-lg-none d-flex justify-content-center align-items-center'>
                         {props.book.img ?
-                            <img src={props.book.img} width='123' height='196' alt='Book'/>
+                            <img src={baseUrl + props.book.img} width='123' height='196' alt='Book'/>
                             :
                             <img src={require('../../../Images/BooksImages/book.webp')} width='123' height='196' alt='Book'/>
                         }
@@ -99,7 +100,7 @@ export const ChangeQuantityOfBook: React.FC<{book: BookModel, deleteBook: any }>
                 </div>
                 <div className='mt-3 col-md-4'>
                     <div className='d-flex justify-content-center align-items-center'>
-                        <p>Total Quantity: </p>
+                        <p>Total Quantity: <b>{quantity}</b></p>
                     </div>
                     <div className='d-flex justify-content-center align-items-center'>
                         <p>Books remaining: <b>{remaining}</b></p>
@@ -110,8 +111,8 @@ export const ChangeQuantityOfBook: React.FC<{book: BookModel, deleteBook: any }>
                         <button className='m-1 btn btn-md btn-danger' onClick={deleteBook}>Delete</button>
                     </div>
                 </div>
-                <button className='m1 btn btn-md main-color text-white' onClick={increaseQuantity}>Add quantity</button>
-                <button className='m1 btn btn-md btn-warning' onClick={decreaseQuantity}>Decrease quantity</button>
+                <button className='m1 btn btn-md main-color text-white' onClick={increaseQuantity}>Add Quantity</button>
+                <button className='m1 btn btn-md btn-warning' onClick={decreaseQuantity}>Decrease Quantity</button>
             </div>
         </div>
     )

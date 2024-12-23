@@ -4,15 +4,13 @@ import com.library.spring_boot_library.dao.UserRepository;
 import com.library.spring_boot_library.entity.Message;
 import com.library.spring_boot_library.requestModels.AdminQuestionRequest;
 import com.library.spring_boot_library.service.MessagesService;
-import org.apache.tomcat.util.http.parser.Authorization;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@CrossOrigin(origins = "https://localhost:3000")
-@Controller
+@RestController
 @RequestMapping("/api/messages")
 public class MessagesController {
 
@@ -24,21 +22,27 @@ public class MessagesController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/secure/add/message/")
-    public void postMessage(Principal principal, @RequestBody Message messageRequest) {
+    @GetMapping("/search")
+    public Page<Message> getNotClosedMessages(Pageable pageable) {
+        return messagesService.getNotClosedUserMessages(pageable);
+    }
+
+    @GetMapping("/search/")
+    public Page<Message> getMessages(@RequestParam String userEmail, Pageable pageable) {
+        return messagesService.getMessagesSendByUser(userEmail, pageable);
+    }
+
+    @PostMapping("/secure/add/message")
+    public void postMessage(@RequestBody Message messageRequest, Principal principal) {
         String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
 
         messagesService.postMessage(messageRequest, userEmail);
     }
 
-    @PutMapping("/secure/admin/message/")
-    public void putMessage(Principal principal, Authentication authentication, @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
+    @PutMapping("/secure/admin/message")
+    public void putMessage(Principal principal,@RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
         String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
-        String admin = authentication.getAuthorities().toString().split(",")[1].replace("]", "");
 
-        if (!admin.contains("ROLE_ADMIN") || !admin.contains("ROLE_MODERATOR")) {
-            throw new Exception("Administration page only!");
-        }
 
         messagesService.putMessage(adminQuestionRequest, userEmail);
     }
