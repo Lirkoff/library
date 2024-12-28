@@ -62,28 +62,28 @@ A **full-stack library application** that allows users to register, **rent**, **
 > **Note**: The following screenshots are placeholders. Update the file paths and descriptions once you have actual images.
 
 ### 1. Home Page
-![Home Page](docs/screenshots/home-page.png)
+
 ![home 1](https://github.com/user-attachments/assets/4354c3ba-e01a-426c-a22e-a377099b69b7)
 ![home 2](https://github.com/user-attachments/assets/df7c4823-33f6-4f42-b2ce-bf42196d832b)
 
 
 ### 2. Search Books
-![Search Books](docs/screenshots/search-books.png)
+
 ![search books](https://github.com/user-attachments/assets/8a255cfa-2cb7-456d-98ac-84820d7f82a1)
 
 
 ### 3. Book Details & Reviews
-![Book Details](docs/screenshots/book-details.png)
+
 ![book details](https://github.com/user-attachments/assets/c909814a-e815-48c6-99f2-68cd6f83d3ba)
 
 
 ### 4. Admin Panel
-![Admin Panel](docs/screenshots/admin-panel.png)
+
 ![admin menu](https://github.com/user-attachments/assets/04914610-089d-4e2a-8e4e-f8944b35a1b5)
 
 
 ### 5. Fees & Payments
-![Fees & Payments](docs/screenshots/fees-payments.png)
+
 ![fees](https://github.com/user-attachments/assets/27e6cba9-7f15-4620-af27-ab07a069aa81)
 
 
