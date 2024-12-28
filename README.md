@@ -59,7 +59,6 @@ A **full-stack library application** that allows users to register, **rent**, **
 
 ## Screenshots
 
-> **Note**: The following screenshots are placeholders. Update the file paths and descriptions once you have actual images.
 
 ### 1. Home Page
 
