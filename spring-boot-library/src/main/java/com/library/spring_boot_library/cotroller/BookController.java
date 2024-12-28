@@ -1,8 +1,8 @@
 package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.entity.Book;
-import com.library.spring_boot_library.responseModels.ShelfCurrentLoansResponse;
+import com.library.spring_boot_library.model.entity.Book;
+import com.library.spring_boot_library.model.responseModels.ShelfCurrentLoansResponse;
 import com.library.spring_boot_library.service.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-@CrossOrigin(origins = "https://localhost:3000")
+
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -28,6 +28,18 @@ public class BookController {
     public Page<Book> fetchBooks(Pageable pageable) {
 
         return bookService.allBooks(pageable);
+    }
+
+    @GetMapping("/search/")
+    public Page<Book> fetchBooksByTitle(@RequestParam String title, Pageable pageable) {
+
+        return bookService.findByTitle(title, pageable);
+    }
+
+    @GetMapping("/search/bycategory/")
+    public Page<Book> fetchBooksByCategory(@RequestParam String category, Pageable pageable) {
+
+        return bookService.findByCategory(category, pageable);
     }
 
     @GetMapping("/{bookId}")

@@ -4,17 +4,16 @@ import com.library.spring_boot_library.dao.BookRepository;
 import com.library.spring_boot_library.dao.CheckoutRepository;
 import com.library.spring_boot_library.dao.HistoryRepository;
 import com.library.spring_boot_library.dao.PaymentRepository;
-import com.library.spring_boot_library.entity.Book;
-import com.library.spring_boot_library.entity.Checkout;
-import com.library.spring_boot_library.entity.History;
-import com.library.spring_boot_library.entity.Payment;
-import com.library.spring_boot_library.responseModels.ShelfCurrentLoansResponse;
+import com.library.spring_boot_library.model.entity.Book;
+import com.library.spring_boot_library.model.entity.Checkout;
+import com.library.spring_boot_library.model.entity.History;
+import com.library.spring_boot_library.model.entity.Payment;
+import com.library.spring_boot_library.model.responseModels.ShelfCurrentLoansResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -53,13 +52,13 @@ public class BookService {
             throw new Exception("Book doesn't exist or already checked out by user");
         }
 
-        List<Checkout> currentBooksChecledOut = checkoutRepository.findBooksByUserEmail(userEmail);
+        List<Checkout> currentBooksCheckedOut = checkoutRepository.findBooksByUserEmail(userEmail);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         boolean bookNeedsReturned = false;
 
-        for (Checkout checkout : currentBooksChecledOut) {
+        for (Checkout checkout : currentBooksCheckedOut) {
             Date d1 = sdf.parse(checkout.getReturnDate());
             Date d2 = sdf.parse(LocalDate.now().toString());
 
@@ -207,5 +206,13 @@ public class BookService {
         }
 
 
+    }
+
+    public Page<Book> findByTitle(String title, Pageable pageable) {
+        return bookRepository.findByTitleContaining(title, pageable);
+    }
+
+    public Page<Book> findByCategory(String category, Pageable pageable) {
+        return bookRepository.findByCategory(category, pageable);
     }
 }

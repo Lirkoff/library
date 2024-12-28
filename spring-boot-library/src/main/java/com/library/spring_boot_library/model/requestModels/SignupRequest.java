@@ -1,12 +1,17 @@
-package com.library.spring_boot_library.entity.dto;
+package com.library.spring_boot_library.model.requestModels;
 
+import com.library.spring_boot_library.model.validation.FieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.util.HashSet;
 import java.util.Set;
 
+@FieldMatch(
+        first = "password",
+        second = "repeatPassword",
+        message = "Passwords must be identical!"
+)
 public class SignupRequest {
     @NotBlank
     @Size(max = 50)

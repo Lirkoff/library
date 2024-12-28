@@ -1,8 +1,8 @@
 package com.library.spring_boot_library.service;
 
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.entity.UserDetailsImpl;
-import com.library.spring_boot_library.entity.UserEntity;
+import com.library.spring_boot_library.model.entity.UserDetailsImpl;
+import com.library.spring_boot_library.model.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.library.spring_boot_library.service;
 
 import com.library.spring_boot_library.dao.ReviewRepository;
-import com.library.spring_boot_library.entity.Review;
-import com.library.spring_boot_library.requestModels.ReviewRequest;
+import com.library.spring_boot_library.model.entity.Review;
+import com.library.spring_boot_library.model.requestModels.ReviewRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
 @Transactional

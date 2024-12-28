@@ -27,6 +27,7 @@ export const HistoryPage = () => {
                 const requestOptions = {
                     method: 'GET',
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 };

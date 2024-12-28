@@ -1,6 +1,6 @@
 package com.library.spring_boot_library.cotroller;
 
-import com.library.spring_boot_library.requestModels.AddBookRequest;
+import com.library.spring_boot_library.model.requestModels.AddBookRequest;
 import com.library.spring_boot_library.service.AdminService;
 import org.springframework.web.bind.annotation.*;
 

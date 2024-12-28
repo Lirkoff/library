@@ -3,14 +3,11 @@ package com.library.spring_boot_library.service;
 import com.library.spring_boot_library.dao.BookRepository;
 import com.library.spring_boot_library.dao.CheckoutRepository;
 import com.library.spring_boot_library.dao.ReviewRepository;
-import com.library.spring_boot_library.entity.Book;
-import com.library.spring_boot_library.requestModels.AddBookRequest;
+import com.library.spring_boot_library.model.entity.Book;
+import com.library.spring_boot_library.model.requestModels.AddBookRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.naming.ldap.PagedResultsControl;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.Optional;
 
 @Service

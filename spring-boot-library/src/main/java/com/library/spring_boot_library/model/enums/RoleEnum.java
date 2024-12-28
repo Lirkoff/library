@@ -1,4 +1,4 @@
-package com.library.spring_boot_library.entity.enums;
+package com.library.spring_boot_library.model.enums;
 
 public enum RoleEnum {
     ROLE_USER,

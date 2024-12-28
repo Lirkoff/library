@@ -76,18 +76,23 @@
 # VALUES (1, 2),
 #        (1, 3);
 
+#
+# INSERT INTO messages (id, admin_email, closed, question, response, title, user_email)
+# VALUES (1, 'modi@example.com', false, 'What are the library timings?', 'Library is open from 9 AM to 9 PM.',
+#         'Library Timings', 'user1@example.com'),
+#        (2, 'modi@example.com', false, 'Can I borrow more than 2 books at a time?',
+#         'No, the limit is 2 books at a time for one user.', 'Book Borrow Limit', 'user2@example.com'),
+#        (3, 'modi@example.com', false, 'How can I request a book?',
+#         'You can request a book by filling out the request form in your dashboard.', 'Book Request Process',
+#         'user3@example.com'),
+#        (4, 'modi@example.com', false, 'Is there a penalty for late returns?',
+#         'Yes, a late fee of $0.5 per day is applicable.', 'Late Return Penalty', 'user4@example.com'),
+#        (5, 'modi@example.com', false, 'Are eBooks available in the library?',
+#         'Yes, you can access eBooks through our digital library section.', 'eBooks Availability', 'user5@example.com'),
+#        (6, 'modi@example.com', false, 'Can I renew my book online?',
+#         'Yes, renewal can be done through your account on our website.', 'Online Book Renewal', 'user6@example.com');
 
-INSERT INTO messages (id, admin_email, closed, question, response, title, user_email)
-VALUES (1, 'modi@example.com', false, 'What are the library timings?', 'Library is open from 9 AM to 9 PM.',
-        'Library Timings', 'user1@example.com'),
-       (2, 'modi@example.com', false, 'Can I borrow more than 2 books at a time?',
-        'No, the limit is 2 books at a time for one user.', 'Book Borrow Limit', 'user2@example.com'),
-       (3, 'modi@example.com', false, 'How can I request a book?',
-        'You can request a book by filling out the request form in your dashboard.', 'Book Request Process',
-        'user3@example.com'),
-       (4, 'modi@example.com', false, 'Is there a penalty for late returns?',
-        'Yes, a late fee of $0.5 per day is applicable.', 'Late Return Penalty', 'user4@example.com'),
-       (5, 'modi@example.com', false, 'Are eBooks available in the library?',
-        'Yes, you can access eBooks through our digital library section.', 'eBooks Availability', 'user5@example.com'),
-       (6, 'modi@example.com', false, 'Can I renew my book online?',
-        'Yes, renewal can be done through your account on our website.', 'Online Book Renewal', 'user6@example.com');
+
+# INSERT INTO checkout (id, book_id, checkout_date, return_date, user_email)
+# VALUES (14, 7, '2024-12-17', '2024-12-24', 'user@example.com');
+#

@@ -1,7 +1,8 @@
 package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.requestModels.PaymentInfoRequest;
+import com.library.spring_boot_library.model.entity.Payment;
+import com.library.spring_boot_library.model.requestModels.PaymentInfoRequest;
 import com.library.spring_boot_library.service.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/api/payment/secure")
+@RequestMapping("/api/payment")
 public class PaymentController {
 
     private final PaymentService paymentService;
@@ -24,7 +25,13 @@ public class PaymentController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/payment-intent")
+    @GetMapping("/search/")
+    public ResponseEntity<Payment> getPaymentIntent(@RequestParam String userEmail) {
+
+        return new ResponseEntity<>(paymentService.getPaymentByUserEmail(userEmail), HttpStatus.OK);
+    }
+
+    @PostMapping("/secure/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfoRequest paymentInfoRequest) throws StripeException {
         PaymentIntent paymentIntent = paymentService.createPaymentIntent(paymentInfoRequest);
         String paymentStr = paymentIntent.toJson();
@@ -32,7 +39,7 @@ public class PaymentController {
         return new ResponseEntity<>(paymentStr, HttpStatus.OK);
     }
 
-    @PutMapping("/payment-complete")
+    @PutMapping("/secure/payment-complete")
     public ResponseEntity<String> stripePaymentComplete(Principal principal) throws Exception {
         String userEmail = userRepository.findByUsername(principal.getName()).orElseThrow().getEmail();
 
@@ -42,4 +49,6 @@ public class PaymentController {
 
         return paymentService.stripePayment(userEmail);
     }
+
+
 }

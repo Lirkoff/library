@@ -1,8 +1,8 @@
 package com.library.spring_boot_library.service;
 
 import com.library.spring_boot_library.dao.MessageRepository;
-import com.library.spring_boot_library.entity.Message;
-import com.library.spring_boot_library.requestModels.AdminQuestionRequest;
+import com.library.spring_boot_library.model.entity.Message;
+import com.library.spring_boot_library.model.requestModels.AdminQuestionRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

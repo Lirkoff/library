@@ -3,14 +3,14 @@ package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.RoleRepository;
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.entity.RoleEntity;
-import com.library.spring_boot_library.entity.UserDetailsImpl;
-import com.library.spring_boot_library.entity.UserEntity;
-import com.library.spring_boot_library.entity.dto.JwtResponse;
-import com.library.spring_boot_library.entity.dto.LoginRequest;
-import com.library.spring_boot_library.entity.dto.MessageResponse;
-import com.library.spring_boot_library.entity.dto.SignupRequest;
-import com.library.spring_boot_library.entity.enums.RoleEnum;
+import com.library.spring_boot_library.model.entity.RoleEntity;
+import com.library.spring_boot_library.model.entity.UserDetailsImpl;
+import com.library.spring_boot_library.model.entity.UserEntity;
+import com.library.spring_boot_library.model.responseModels.JwtResponse;
+import com.library.spring_boot_library.model.requestModels.LoginRequest;
+import com.library.spring_boot_library.model.responseModels.MessageResponse;
+import com.library.spring_boot_library.model.requestModels.SignupRequest;
+import com.library.spring_boot_library.model.enums.RoleEnum;
 import com.library.spring_boot_library.utils.JwtUtils;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequestMapping("/api/auth")
 public class AuthController {
     private final AuthenticationManager authenticationManager;

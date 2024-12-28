@@ -1,6 +1,6 @@
-package com.library.spring_boot_library.entity;
+package com.library.spring_boot_library.model.entity;
 
-import com.library.spring_boot_library.entity.enums.RoleEnum;
+import com.library.spring_boot_library.model.enums.RoleEnum;
 import jakarta.persistence.*;
 
 @Entity

@@ -1,6 +1,6 @@
 package com.library.spring_boot_library.dao;
 
-import com.library.spring_boot_library.entity.Checkout;
+import com.library.spring_boot_library.model.entity.Checkout;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

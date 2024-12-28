@@ -1,4 +1,4 @@
-package com.library.spring_boot_library.entity.dto;
+package com.library.spring_boot_library.model.requestModels;
 
 public class LoginRequest {
     private String username;

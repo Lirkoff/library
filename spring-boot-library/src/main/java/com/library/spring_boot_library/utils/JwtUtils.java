@@ -1,6 +1,6 @@
 package com.library.spring_boot_library.utils;
 
-import com.library.spring_boot_library.entity.UserDetailsImpl;
+import com.library.spring_boot_library.model.entity.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

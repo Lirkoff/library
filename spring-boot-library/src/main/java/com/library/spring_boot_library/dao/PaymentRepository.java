@@ -1,6 +1,6 @@
 package com.library.spring_boot_library.dao;
 
-import com.library.spring_boot_library.entity.Payment;
+import com.library.spring_boot_library.model.entity.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

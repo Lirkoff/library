@@ -1,4 +1,4 @@
-package com.library.spring_boot_library.entity.dto;
+package com.library.spring_boot_library.model.responseModels;
 
 public class MessageResponse {
     private String message;

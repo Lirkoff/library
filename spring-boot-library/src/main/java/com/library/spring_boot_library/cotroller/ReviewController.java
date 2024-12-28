@@ -1,10 +1,9 @@
 package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.entity.Review;
-import com.library.spring_boot_library.requestModels.ReviewRequest;
+import com.library.spring_boot_library.model.entity.Review;
+import com.library.spring_boot_library.model.requestModels.ReviewRequest;
 import com.library.spring_boot_library.service.ReviewService;
-import com.library.spring_boot_library.utils.JwtUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;

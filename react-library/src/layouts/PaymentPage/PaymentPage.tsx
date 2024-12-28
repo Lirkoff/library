@@ -16,10 +16,13 @@ export const PaymentPage = () => {
     useEffect(() => {
         const fetchFees = async () => {
             if (user) {
-                const url = `${process.env.REACT_APP_API}/payments/search/findByUserEmail?userEmail=${user.email}`;
+                const url = `${process.env.REACT_APP_API}/payment/search/?userEmail=${user.email}`;
                 const requestOptions = {
                     method: 'GET',
-                    headers: {'Content-Type': 'application/json'}
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 };
                 const paymentResponse = await fetch(url, requestOptions);
 
@@ -59,14 +62,12 @@ export const PaymentPage = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(paymentInfo)
-        }
-
+        };
         const stripeResponse = await fetch(url, requestOptions);
-
         if (!stripeResponse.ok) {
             setHttpError(true);
             setSubmitDisabled(false);
-            throw new Error('Something went wrong');
+            throw new Error('Something went wrong!');
         }
         const stripeResponseJson = await stripeResponse.json();
 
@@ -79,25 +80,24 @@ export const PaymentPage = () => {
                     }
                 }
             }, {handleActions: false}
-        ).then(async function (result: any){
+        ).then(async function (result: any) {
             if (result.error) {
-                setSubmitDisabled(false);
-                alert('There was an error!')
+                setSubmitDisabled(false)
+                alert('There was an error')
             } else {
                 const url = `https://localhost:8443/api/payment/secure/payment-complete`;
                 const requestOptions = {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 };
-
                 const stripeResponse = await fetch(url, requestOptions);
                 if (!stripeResponse.ok) {
-                    setHttpError(true);
-                    setSubmitDisabled(false);
-                    throw new Error('Something went wrong');
+                    setHttpError(true)
+                    setSubmitDisabled(false)
+                    throw new Error('Something went wrong!')
                 }
                 setFees(0);
                 setSubmitDisabled(false);
@@ -120,31 +120,30 @@ export const PaymentPage = () => {
         )
     }
 
-    return (
+
+    return(
         <div className='container'>
-            {fees > 0 &&
-                <div className='card mt-3'>
-                    <h5 className='card-header'>Fees pending: <span className='text-danger'>${fees}</span></h5>
-                    <div className='card-body'>
-                        <h5 className='card-title mb-3'>Credit Card</h5>
-                        <CardElement id='card-element'/>
-                        <button disabled={submitDisabled} type='button' className='btn btn-md main-color text-white mt-3'
-                                onClick={checkout}>
-                            Pay fees
-                        </button>
-                    </div>
+            {fees > 0 && <div className='card mt-3'>
+                <h5 className='card-header'>Fees pending: <span className='text-danger'>${fees}</span></h5>
+                <div className='card-body'>
+                    <h5 className='card-title mb-3'>Credit Card</h5>
+                    <CardElement id='card-element' />
+                    <button disabled={submitDisabled} type='button' className='btn btn-md main-color text-white mt-3'
+                            onClick={checkout}>
+                        Pay fees
+                    </button>
                 </div>
-            }
-            {fees === 0
-                &&
+            </div>}
+
+            {fees === 0 &&
                 <div className='mt-3'>
                     <h5>You have no fees!</h5>
                     <Link type='button' className='btn main-color text-white' to='search'>
-                        Explore top books!
+                        Explore top books
                     </Link>
                 </div>
             }
             {submitDisabled && <SpinnerLoading/>}
         </div>
-    )
+    );
 }

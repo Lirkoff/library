@@ -1,7 +1,7 @@
 package com.library.spring_boot_library.dao;
 
 
-import com.library.spring_boot_library.entity.Book;
+import com.library.spring_boot_library.model.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

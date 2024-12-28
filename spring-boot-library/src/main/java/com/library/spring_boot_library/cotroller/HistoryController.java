@@ -1,6 +1,6 @@
 package com.library.spring_boot_library.cotroller;
 
-import com.library.spring_boot_library.entity.History;
+import com.library.spring_boot_library.model.entity.History;
 import com.library.spring_boot_library.service.HistoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

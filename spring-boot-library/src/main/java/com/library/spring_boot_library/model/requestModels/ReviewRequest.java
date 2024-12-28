@@ -1,4 +1,4 @@
-package com.library.spring_boot_library.requestModels;
+package com.library.spring_boot_library.model.requestModels;
 
 import java.util.Optional;
 

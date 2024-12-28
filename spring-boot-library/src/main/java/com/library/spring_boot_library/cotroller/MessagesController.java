@@ -1,8 +1,8 @@
 package com.library.spring_boot_library.cotroller;
 
 import com.library.spring_boot_library.dao.UserRepository;
-import com.library.spring_boot_library.entity.Message;
-import com.library.spring_boot_library.requestModels.AdminQuestionRequest;
+import com.library.spring_boot_library.model.entity.Message;
+import com.library.spring_boot_library.model.requestModels.AdminQuestionRequest;
 import com.library.spring_boot_library.service.MessagesService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,13 +1,12 @@
 package com.library.spring_boot_library.service;
 
 import com.library.spring_boot_library.dao.PaymentRepository;
-import com.library.spring_boot_library.entity.Payment;
-import com.library.spring_boot_library.requestModels.PaymentInfoRequest;
+import com.library.spring_boot_library.model.entity.Payment;
+import com.library.spring_boot_library.model.requestModels.PaymentInfoRequest;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -51,5 +50,9 @@ public class PaymentService {
         payment.setAmount(00.00);
         paymentRepository.save(payment);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public Payment getPaymentByUserEmail(String userEmail) {
+        return paymentRepository.findByUserEmail(userEmail);
     }
 }
